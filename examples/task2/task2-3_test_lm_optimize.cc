@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 //
 // Created by caoqi on 2018/9/2.
 /*
