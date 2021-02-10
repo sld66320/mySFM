@@ -468,20 +468,9 @@ BundleAdjustment::analytic_jacobian_entries (
     /* Compute exact camera and point entries if intrinsics are fixed */
     if (this->opts.fixed_intrinsics)
     {
-        //平移矩阵偏导
-        cam_x_ptr[0] = fz * rd_factor;   
-        cam_x_ptr[1] = 0.0;
-        cam_x_ptr[2] = -fz * rd_factor * ix;
-
         cam_x_ptr[3] = -fz * rd_factor * ry * ix;
         cam_x_ptr[4] = fz * rd_factor * (rz + rx * ix);
         cam_x_ptr[5] = -fz * rd_factor * ry;
-
-        //平移矩阵偏导
-        cam_y_ptr[0] = 0.0;
-        cam_y_ptr[1] = fz * rd_factor;
-        cam_y_ptr[2] = -fz * rd_factor * iy;
-        
 
         cam_y_ptr[3] = -fz * rd_factor * (rz + ry * iy);
         cam_y_ptr[4] = fz * rd_factor * rx * iy;
