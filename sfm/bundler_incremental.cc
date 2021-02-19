@@ -287,6 +287,7 @@ Incremental::triangulate_new_tracks (int min_num_views)
          * Triangulate the track using all cameras. There can be more than two
          * cameras if the track was rejected in previous triangulation attempts.
          */
+		//找到这个track相关的图片的下标，位姿，图片中的特征点的位置，用于后边的三角测量
         std::vector<math::Vec2f> pos;
         std::vector<CameraPose const*> poses;
         std::vector<std::size_t> view_ids;
@@ -297,9 +298,13 @@ Incremental::triangulate_new_tracks (int min_num_views)
             if (!this->viewports->at(view_id).pose.is_valid())
                 continue;
             int const feature_id = track.features[j].feature_id;
+			
+			//像素点的二维坐标
             pos.push_back(this->viewports->at(view_id)
                 .features.positions[feature_id]);
-            poses.push_back(&this->viewports->at(view_id).pose);
+            
+			//view的位姿信息
+			poses.push_back(&this->viewports->at(view_id).pose);
             view_ids.push_back(view_id);
             feature_ids.push_back(feature_id);
         }

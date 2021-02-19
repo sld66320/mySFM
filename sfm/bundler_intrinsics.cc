@@ -29,6 +29,7 @@ Intrinsics::compute (core::Scene::Ptr scene, ViewportList* viewports)
         if (views[i] == nullptr)
             continue;
 
+		//获取焦距比例系数
         switch (this->opts.intrinsics_source)
         {
             case FROM_EXIF:

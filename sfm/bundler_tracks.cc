@@ -36,10 +36,10 @@ unify_tracks(int view1_tid, int view2_tid,
     {
         int const view_id = track2.features[k].view_id;
         int const feat_id = track2.features[k].feature_id;
-        viewports->at(view_id).track_ids[feat_id] = view1_tid;
+        viewports->at(view_id).track_ids[feat_id] = view1_tid;	//修改ports中的track id
     }
     track1.features.insert(track1.features.end(),
-        track2.features.begin(), track2.features.end());
+        track2.features.begin(), track2.features.end());		//把两个track中的图片对应点融合
     /* Free old track's memory. clear() does not work. */
     track2.features = FeatureReferenceList();
 }
@@ -71,7 +71,7 @@ Tracks::compute (PairwiseMatching const& matching,
 
         /* Iterate over matches for a pair. */
         for (std::size_t j = 0; j < tvm.matches.size(); ++j)
-        {
+        { //遍历两幅图中所有的匹配点
             CorrespondenceIndex idx = tvm.matches[j];
             int const view1_tid = viewport1.track_ids[idx.first];
             int const view2_tid = viewport2.track_ids[idx.second];

@@ -26,8 +26,8 @@
  * @return
  */
 core::Scene::Ptr
-make_scene(const std::string & image_folder_path, const std::string & scene_path){
-
+make_scene(const std::string & image_folder_path, const std::string & scene_path) {
+    
     util::WallTimer timer;
 
     /*** 创建文件夹 ***/
@@ -37,9 +37,10 @@ make_scene(const std::string & image_folder_path, const std::string & scene_path
 
     /***扫描文件夹，获取所有的图像文件路径***/
     util::fs::Directory dir;
-    try {dir.scan(image_folder_path);
+    try {
+        dir.scan(image_folder_path);
     }
-    catch (std::exception&e){
+    catch (std::exception&e) {
         std::cerr << "Error scanning input dir: " << e.what() << std::endl;
         std::exit(EXIT_FAILURE);
     }
@@ -50,9 +51,9 @@ make_scene(const std::string & image_folder_path, const std::string & scene_path
     /**** 开始加载图像 ****/
     std::sort(dir.begin(), dir.end());
     int num_imported = 0;
-    for(std::size_t i=0; i< dir.size(); i++){
+    for(std::size_t i=0; i< dir.size(); i++) {
         // 是一个文件夹
-        if(dir[i].is_dir){
+        if(dir[i].is_dir) {
             std::cout<<"Skipping directory "<<dir[i].name<<std::endl;
             continue;
         }
@@ -63,23 +64,23 @@ make_scene(const std::string & image_folder_path, const std::string & scene_path
         // 从可交换信息文件中读取图像焦距
         std::string exif;
         core::ImageBase::Ptr image = load_any_image(afname, & exif);
-        if(image == nullptr){
+        if(image == nullptr) {
             continue;
         }
 
         core::View::Ptr view = core::View::create();
-        view->set_id(num_imported);
+        view->set_id(num_imported);  //循环一次就+1
         view->set_name(remove_file_extension(fname));
 
         // 限制图像尺寸
         int orig_width = image->width();
         image = limit_image_size(image, MAX_PIXELS);
-        if (orig_width == image->width() && has_jpeg_extension(fname))
+        if (orig_width == image->width() && has_jpeg_extension(fname)) //宽度没有变化就按地址保存图片
             view->set_image_ref(afname, "original");
         else
-            view->set_image(image, "original");
+            view->set_image(image, "original"); 
 
-        add_exif_to_view(view, exif);
+        add_exif_to_view(view, exif);       //采用内存复制的方法把exif和iew进行绑定，这里如果进行resize的话，exif中存储的内参信息还准确马
 
         scene->get_views().push_back(view);
 
@@ -107,7 +108,7 @@ make_scene(const std::string & image_folder_path, const std::string & scene_path
 void
 features_and_matching (core::Scene::Ptr scene,
                        sfm::bundler::ViewportList* viewports,
-                       sfm::bundler::PairwiseMatching* pairwise_matching){
+                       sfm::bundler::PairwiseMatching* pairwise_matching) {
 
     /* Feature computation for the scene. */
     sfm::bundler::Features::Options feature_opts;
@@ -140,11 +141,11 @@ features_and_matching (core::Scene::Ptr scene,
         util::WallTimer timer;
         sfm::bundler::Matching bundler_matching(matching_opts);
         bundler_matching.init(viewports);
-        bundler_matching.compute(pairwise_matching);
+        bundler_matching.compute(pairwise_matching);		
         std::cout << "Matching took " << timer.get_elapsed()
                   << " ms." << std::endl;
         std::cout<< "Feature matching took "
-                          + util::string::get(timer.get_elapsed()) + "ms."<<std::endl;
+                 + util::string::get(timer.get_elapsed()) + "ms."<<std::endl;
     }
 
     if (pairwise_matching->empty()) {
@@ -157,13 +158,13 @@ features_and_matching (core::Scene::Ptr scene,
 int main(int argc, char *argv[])
 {
 
-    if(argc < 3){
+    if(argc < 3) {
         std::cout<<"Usage: [input]image_dir [output]scene_dir"<<std::endl;
         return -1;
     }
 
-    core::Scene::Ptr scene = make_scene(argv[1], argv[2]);
-    std::cout<<"Scene has "<<scene->get_views().size()<<" views. "<<std::endl;
+    core::Scene::Ptr scene = make_scene(argv[1], argv[2]);      //通过路径读取图片及内参，每一对图片和内参封装在一个view中
+    std::cout<<"Scene has "<<sciene->get_views().size()<<" views. "<<std::endl;
 
 
     /*进行特征匹配*/
@@ -193,6 +194,7 @@ int main(int argc, char *argv[])
 
     /****** 开始增量的BA*****/
     util::WallTimer timer;
+	//计算每张图片中哪些特征对应同一个物理点，并把对应关系通过下标的形式建立连接
     /* Compute connected feature components, i.e. feature tracks. */
     sfm::bundler::TrackList tracks;
     {
@@ -215,19 +217,19 @@ int main(int argc, char *argv[])
     // 计算初始的匹配对
     sfm::bundler::InitialPair::Result init_pair_result;
     sfm::bundler::InitialPair::Options init_pair_opts;
-        //init_pair_opts.homography_opts.max_iterations = 1000;
-        //init_pair_opts.homography_opts.threshold = 0.005f;
-        init_pair_opts.homography_opts.verbose_output = false;
-        init_pair_opts.max_homography_inliers = 0.8f;
-        init_pair_opts.verbose_output = true;
+    //init_pair_opts.homography_opts.max_iterations = 1000;
+    //init_pair_opts.homography_opts.threshold = 0.005f;
+    init_pair_opts.homography_opts.verbose_output = false;
+    init_pair_opts.max_homography_inliers = 0.8f;
+    init_pair_opts.verbose_output = true;
 
-        // 开始计算初始的匹配对
-        sfm::bundler::InitialPair init_pair(init_pair_opts);
-        init_pair.initialize(viewports, tracks);
-        init_pair.compute_pair(&init_pair_result);
+    // 开始计算初始的匹配对，得到的是初始两个view的编号和位姿信息
+    sfm::bundler::InitialPair init_pair(init_pair_opts);
+    init_pair.initialize(viewports, tracks);
+    init_pair.compute_pair(&init_pair_result);
     if (init_pair_result.view_1_id < 0 || init_pair_result.view_2_id < 0
-        || init_pair_result.view_1_id >= static_cast<int>(viewports.size())
-        || init_pair_result.view_2_id >= static_cast<int>(viewports.size())){
+            || init_pair_result.view_1_id >= static_cast<int>(viewports.size())
+            || init_pair_result.view_2_id >= static_cast<int>(viewports.size())) {
 
         std::cerr << "Error finding initial pair, exiting!" << std::endl;
         std::cerr << "Try manually specifying an initial pair." << std::endl;
@@ -261,7 +263,7 @@ int main(int argc, char *argv[])
     incremental.initialize(&viewports, &tracks);
 
     // 对当前两个视角进行track重建，并且如果track存在外点，则将每个track的外点剥离成新的track
-    incremental.triangulate_new_tracks(2);
+    incremental.triangulate_new_tracks(2); 
 
     // 根据重投影误差进行筛选
     incremental.invalidate_large_error_tracks();
@@ -284,14 +286,19 @@ int main(int argc, char *argv[])
         for (std::size_t i = 0; i < next_views.size(); ++i)
         {
             std::cout << std::endl;
-            std::cout << "Adding next view ID " << next_views[i]
+            std::cout <·< "Adding next view ID " << next_views[i]
                       << " (" << (num_cameras_reconstructed + 1) << " of "
                       << viewports.size() << ")..." << std::endl;
-            if (incremental.reconstruct_next_view(next_views[i]))
+            if (incremental.reconstruct_next_view(next_views[i]))	//估计出当前view的位置
             {
                 next_view_id = next_views[i];
                 break;
             }
+            
+			/* Run single-camera bundle adjustment. */
+			std::cout << "Running single camera bundle adjustment..." << std::endl;
+			incremental.bundle_adjustment_single_cam(next_view_id);
+			num_cameras_reconstructed += 1;
         }
 
         if (next_view_id < 0) {
@@ -300,7 +307,7 @@ int main(int argc, char *argv[])
                 std::cout << "SfM reconstruction finished." << std::endl;
                 break;
             }
-            else{
+            else {
                 incremental.triangulate_new_tracks(MIN_VIEWS_PER_TRACK);
                 std::cout << "Running full bundle adjustment..." << std::endl;
                 incremental.invalidate_large_error_tracks();
@@ -310,10 +317,7 @@ int main(int argc, char *argv[])
             }
         }
 
-        /* Run single-camera bundle adjustment. */
-        std::cout << "Running single camera bundle adjustment..." << std::endl;
-        incremental.bundle_adjustment_single_cam(next_view_id);
-        num_cameras_reconstructed += 1;
+
 
         /* Run full bundle adjustment only after a couple of views. */
         int const full_ba_skip_views =  std::min(100, num_cameras_reconstructed / 10);
@@ -323,7 +327,7 @@ int main(int argc, char *argv[])
                       << full_ba_skip_views << " views)." << std::endl;
             full_ba_num_skipped += 1;
         }
-        else{
+        else {
             incremental.triangulate_new_tracks(MIN_VIEWS_PER_TRACK);
             std::cout << "Running full bundle adjustment..." << std::endl;
 
@@ -337,8 +341,8 @@ int main(int argc, char *argv[])
     }
 
     sfm::bundler::TrackList valid_tracks;
-    for(int i=0; i<tracks.size(); i++){
-        if(tracks[i].is_valid()){
+    for(int i=0; i<tracks.size(); i++) {
+        if(tracks[i].is_valid()) {
             valid_tracks.push_back(tracks[i]);
         }
     }
@@ -346,7 +350,7 @@ int main(int argc, char *argv[])
     std::cout << "SfM reconstruction took " << timer.get_elapsed()
               << " ms." << std::endl;
     std::cout<< "SfM reconstruction took "
-                      + util::string::get(timer.get_elapsed()) + "ms."<<std::endl;
+             + util::string::get(timer.get_elapsed()) + "ms."<<std::endl;
 
     /***** 保存输出结果***/
     std::ofstream out_file("./points.ply");
@@ -362,7 +366,7 @@ int main(int argc, char *argv[])
     out_file<<"property uchar blue"<<std::endl;
     out_file<<"end_header"<<std::endl;
 
-    for(int i=0; i< valid_tracks.size(); i++){
+    for(int i=0; i< valid_tracks.size(); i++) {
         out_file<<valid_tracks[i].pos[0]<<" "<< valid_tracks[i].pos[1]<<" "<<valid_tracks[i].pos[2]<<" "
                 <<(int)valid_tracks[i].color[0]<<" "<<(int)valid_tracks[i].color[1]<<" "<<(int)valid_tracks[i].color[2]<<std::endl;
     }
@@ -382,14 +386,14 @@ int main(int argc, char *argv[])
     /* Apply bundle cameras to views. */
     core::Bundle::Cameras const& bundle_cams = bundle->get_cameras();
     core::Scene::ViewList const& views = scene->get_views();
-    if (bundle_cams.size() != views.size()){
+    if (bundle_cams.size() != views.size()) {
         std::cerr << "Error: Invalid number of cameras!" << std::endl;
         std::exit(EXIT_FAILURE);
     }
 
     /*利用估计的相机内参数进行去劲向畸变操作*/
-#pragma omp parallel for schedule(dynamic,1)
-    for (std::size_t i = 0; i < bundle_cams.size(); ++i){
+    #pragma omp parallel for schedule(dynamic,1)
+    for (std::size_t i = 0; i < bundle_cams.size(); ++i) {
         core::View::Ptr view = views[i];
         core::CameraInfo const& cam = bundle_cams[i];
         if (view == nullptr)
@@ -400,22 +404,22 @@ int main(int argc, char *argv[])
         view->set_camera(cam);
 
         /* Undistort image. */
-        if (!undistorted_name.empty()){
+        if (!undistorted_name.empty()) {
             core::ByteImage::Ptr original = view->get_byte_image(original_name);
             if (original == nullptr)
                 continue;
             core::ByteImage::Ptr undist = core::image::image_undistort_k2k4<uint8_t>
-                            (original, cam.flen, cam.dist[0], cam.dist[1]);
+                                          (original, cam.flen, cam.dist[0], cam.dist[1]);
             view->set_image(undist, undistorted_name);
         }
 
-#pragma omp critical
+        #pragma omp critical
         std::cout << "Saving view " << view->get_directory() << std::endl;
         view->save_view();
         view->cache_cleanup();
     }
 
-   // log_message(conf, "SfM reconstruction done.\n");
+    // log_message(conf, "SfM reconstruction done.\n");
 
     return 0;
 }

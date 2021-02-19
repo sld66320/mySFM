@@ -112,13 +112,14 @@ Triangulate::triangulate (std::vector<CameraPose const*> const& poses,
             pose_pair.push_back(poses[p2]);
             position_pair.push_back(positions[p1]);
             position_pair.push_back(positions[p2]);
-            math::Vec3d tmp_pos = triangulate_track(position_pair, pose_pair);
+            math::Vec3d tmp_pos = triangulate_track(position_pair, pose_pair);		//根据两个点进行三角测量
             if (MATH_ISNAN(tmp_pos[0]) || MATH_ISINF(tmp_pos[0]) ||
                 MATH_ISNAN(tmp_pos[1]) || MATH_ISINF(tmp_pos[1]) ||
                 MATH_ISNAN(tmp_pos[2]) || MATH_ISINF(tmp_pos[2]))
                 continue;
 
             /* Check if pair has small triangulation angle. */
+			//计算目标点和相机中心形成的夹角是否过大(距离过金)
             if (this->opts.angle_threshold > 0.0)
             {
                 math::Vec3d camera_pos;
@@ -131,6 +132,8 @@ Triangulate::triangulate (std::vector<CameraPose const*> const& poses,
                     continue;
             }
 
+            
+            //根据坐标系转化后Z轴的正负重投影误差计算外点
             /* Chek error in all input poses and find outliers. */
             std::vector<std::size_t> tmp_outliers;
             for (std::size_t i = 0; i < poses.size(); ++i)

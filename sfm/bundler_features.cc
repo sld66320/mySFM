@@ -19,7 +19,7 @@ SFM_NAMESPACE_BEGIN
 SFM_BUNDLER_NAMESPACE_BEGIN
 
 void
-Features::compute (core::Scene::Ptr scene, ViewportList* viewports)
+Features::compute (core::Scene::Ptr scene, ViewportList* viewports)	//检测scene中每个view中的图片特征点的位置，保存在viewports的
 {
 
     if (scene == nullptr)
@@ -40,7 +40,7 @@ Features::compute (core::Scene::Ptr scene, ViewportList* viewports)
     /* Iterate the scene and compute features. */
     for (std::size_t i = 0; i < views.size(); ++i)
     {
-        {
+        { //输出处理进度
             num_done += 1;
             float percent = (num_done * 1000 / num_views) / 10.0f;
             std::cout << "\rDetecting features, view " << num_done << " of "
@@ -69,9 +69,10 @@ Features::compute (core::Scene::Ptr scene, ViewportList* viewports)
         // 计算每个视角的特征点
         Viewport* viewport = &viewports->at(i);
         viewport->features.set_options(this->opts.feature_options);
-        viewport->features.compute_features(image);
+        viewport->features.compute_features(image);         //结合options计算feature，位置信息存在了features对象的positions上，核心函数是process
+        
         // 对图像特征点的位置进行初始化
-        viewport->features.normalize_feature_positions();
+        viewport->features.normalize_feature_positions();	//让所有特征点的位置处于0-1之间
 
         {
             std::size_t const num_feats = viewport->features.positions.size();

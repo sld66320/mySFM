@@ -65,7 +65,7 @@ Matching::compute (PairwiseMatching* pairwise_matching)
 
     // 视角的个数
     std::size_t num_viewports = this->viewports->size();
-    std::size_t num_pairs = num_viewports * (num_viewports - 1) / 2;
+    std::size_t num_pairs = num_viewports * (num_viewports - 1) / 2; //关系图的边的个数
     std::size_t num_done = 0;
 
     if (this->progress != nullptr)
@@ -103,7 +103,7 @@ Matching::compute (PairwiseMatching* pairwise_matching)
        // 两个视角之间进行匹配
         util::WallTimer timer;
         std::stringstream message;
-        CorrespondenceIndices matches;
+        CorrespondenceIndices matches;		//这里是个数组每个元素是一个pair，存储匹配好的两个特征的下标
         this->two_view_matching(view_1_id, view_2_id, &matches, message);
         std::size_t matching_time = timer.get_elapsed();
 

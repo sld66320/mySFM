@@ -25,13 +25,16 @@ Name=New Compiled Binary Launcher
 Type=Native Application
 
 [Launch][Launch Configuration 0][Data]
-Arguments=
+Arguments=./examples/data/sequence ./examples/task3/
 Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x00)
 Dependency Action=Nothing
 EnvironmentGroup=
-Executable=file:///home/sld/workspace/ImageBasedModellingEdu-main
+Executable=file:///home/sld/workspace/ImageBasedModellingEdu-main/build/examples/task3/task3-1_incremental_sfm
 External Terminal=konsole --noclose --workdir %workdir -e %exe
-Project Target=ImageBasedModellingEdu-main,examples,task2,task2-4_test_jacobian
+Project Target=
 Use External Terminal=false
-Working Directory=
-isExecutable=false
+Working Directory=file:///home/sld/workspace/ImageBasedModellingEdu-main
+isExecutable=true
+
+[Project]
+VersionControlSupport=kdevgit

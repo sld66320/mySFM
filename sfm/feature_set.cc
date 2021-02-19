@@ -63,7 +63,7 @@ FeatureSet::compute_sift (core::ByteImage::ConstPtr image)
         Sift sift(this->opts.sift_opts);
         sift.set_image(image);
         sift.process();
-        descr = sift.get_descriptors();
+        descr = sift.get_descriptors(); //这里应该就是存储了相关特征点的位置
     }
 
     /* Sort features by scale for low-res matching. */
@@ -71,14 +71,14 @@ FeatureSet::compute_sift (core::ByteImage::ConstPtr image)
 
     /* Prepare and copy to data structures. */
     std::size_t offset = this->positions.size();
-    this->positions.resize(offset + descr.size());
+    this->positions.resize(offset + descr.size());          //把相关特征点的位置存储在了positions上
     this->colors.resize(offset + descr.size());
 
     for (std::size_t i = 0; i < descr.size(); ++i)
     {
         Sift::Descriptor const& d = descr[i];
         this->positions[offset + i] = math::Vec2f(d.x, d.y);
-        image->linear_at(d.x, d.y, this->colors[offset + i].begin());
+        image->linear_at(d.x, d.y, this->colors[offset + i].begin());   //这是周围像素坐标颜色的一个线性组合？
     }
 
     /* Keep SIFT descriptors. */
