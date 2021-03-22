@@ -6,6 +6,7 @@
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
       <config projectName="ImageBasedModellingEdu" targetName="task1_test_math_basic" />
+      <config projectName="ImageBasedModellingEdu" targetName="task6-1_surface_reconstruction" />
       <config projectName="ImageBasedModellingEdu" targetName="task2-5_test_ba" />
       <config projectName="ImageBasedModellingEdu" targetName="sfm" />
       <config projectName="ImageBasedModellingEdu" targetName="task4_test_fundamental_8_point" />
@@ -15,15 +16,17 @@
       <config projectName="ImageBasedModellingEdu" targetName="task3-1_incremental_sfm" />
       <config projectName="ImageBasedModellingEdu" targetName="core" />
       <config projectName="ImageBasedModellingEdu" targetName="features" />
-      <config projectName="ImageBasedModellingEdu" targetName="util" />
       <config projectName="ImageBasedModellingEdu" targetName="task3_test_feature_matching" />
       <config projectName="ImageBasedModellingEdu" targetName="task2-3_test_lm_optimize" />
+      <config projectName="ImageBasedModellingEdu" targetName="util" />
       <config projectName="ImageBasedModellingEdu" targetName="gco" />
       <config projectName="ImageBasedModellingEdu" targetName="task2_test_camera_model" />
       <config projectName="ImageBasedModellingEdu" targetName="task4-2_dmrecon_multi_views" />
+      <config projectName="ImageBasedModellingEdu" targetName="task7_1_mesh_clean" />
       <config projectName="ImageBasedModellingEdu" targetName="task4-1_scene2pset_single_view" />
       <config projectName="ImageBasedModellingEdu" targetName="mrf" />
       <config projectName="ImageBasedModellingEdu" targetName="task2-2_test_p3p_ransac" />
+      <config projectName="ImageBasedModellingEdu" targetName="task7_2_texturing" />
       <config projectName="ImageBasedModellingEdu" targetName="task6_test_pose_from_fundamental" />
       <config projectName="ImageBasedModellingEdu" targetName="task4-1_dmrecon_single_view" />
       <config projectName="ImageBasedModellingEdu" targetName="surface" />
@@ -42,25 +45,7 @@
   <component name="ChangeListManager">
     <list default="true" id="08155804-328d-42e4-b20e-96f75a0af12d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvs/dmrecon.cc" beforeDir="false" afterPath="$PROJECT_DIR$/mvs/dmrecon.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvs/dmrecon.h" beforeDir="false" afterPath="$PROJECT_DIR$/mvs/dmrecon.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvs/global_view_selection.cc" beforeDir="false" afterPath="$PROJECT_DIR$/mvs/global_view_selection.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvs/global_view_selection.h" beforeDir="false" afterPath="$PROJECT_DIR$/mvs/global_view_selection.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvs/image_pyramid.h" beforeDir="false" afterPath="$PROJECT_DIR$/mvs/image_pyramid.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvs/local_view_selection.cc" beforeDir="false" afterPath="$PROJECT_DIR$/mvs/local_view_selection.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvs/local_view_selection.h" beforeDir="false" afterPath="$PROJECT_DIR$/mvs/local_view_selection.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvs/mvs_tools.cc" beforeDir="false" afterPath="$PROJECT_DIR$/mvs/mvs_tools.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvs/mvs_tools.h" beforeDir="false" afterPath="$PROJECT_DIR$/mvs/mvs_tools.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvs/patch_optimization.cc" beforeDir="false" afterPath="$PROJECT_DIR$/mvs/patch_optimization.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvs/patch_optimization.h" beforeDir="false" afterPath="$PROJECT_DIR$/mvs/patch_optimization.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvs/patch_sampler.cc" beforeDir="false" afterPath="$PROJECT_DIR$/mvs/patch_sampler.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvs/patch_sampler.h" beforeDir="false" afterPath="$PROJECT_DIR$/mvs/patch_sampler.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvs/progress.h" beforeDir="false" afterPath="$PROJECT_DIR$/mvs/progress.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvs/settings.h" beforeDir="false" afterPath="$PROJECT_DIR$/mvs/settings.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvs/single_view.cc" beforeDir="false" afterPath="$PROJECT_DIR$/mvs/single_view.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvs/single_view.h" beforeDir="false" afterPath="$PROJECT_DIR$/mvs/single_view.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvs/view_selection.h" beforeDir="false" afterPath="$PROJECT_DIR$/mvs/view_selection.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/task6/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/task6/CMakeLists.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +81,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="CMakeSettings" />
   </component>
-  <component name="RunManager" selected="CMake Application.task4-2_scene2pset_multi_views">
+  <component name="RunManager" selected="CMake Application.task6-2_meshclean">
     <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -207,7 +192,7 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="task4-2_dmrecon_multi_views" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ImageBasedModellingEdu" TARGET_NAME="task4-2_dmrecon_multi_views" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ImageBasedModellingEdu" RUN_TARGET_NAME="task4-2_dmrecon_multi_views">
+    <configuration name="task4-2_dmrecon_multi_views" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="./examples/data/sequence_scene 2" REDIRECT_INPUT="false" ELEVATE="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ImageBasedModellingEdu" TARGET_NAME="task4-2_dmrecon_multi_views" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ImageBasedModellingEdu" RUN_TARGET_NAME="task4-2_dmrecon_multi_views">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -237,7 +222,27 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration name="task6-1_surface_reconstruction" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ImageBasedModellingEdu" TARGET_NAME="task6-1_surface_reconstruction" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ImageBasedModellingEdu" RUN_TARGET_NAME="task6-1_surface_reconstruction">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="task6-2_meshclean" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ImageBasedModellingEdu" TARGET_NAME="task6-2_meshclean" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ImageBasedModellingEdu" RUN_TARGET_NAME="task6-2_meshclean">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="task6_test_pose_from_fundamental" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ImageBasedModellingEdu" TARGET_NAME="task6_test_pose_from_fundamental" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ImageBasedModellingEdu" RUN_TARGET_NAME="task6_test_pose_from_fundamental">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="task7_1_mesh_clean" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ImageBasedModellingEdu" TARGET_NAME="task7_1_mesh_clean" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ImageBasedModellingEdu" RUN_TARGET_NAME="task7_1_mesh_clean">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="task7_2_texturing" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ImageBasedModellingEdu" TARGET_NAME="task7_2_texturing" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ImageBasedModellingEdu" RUN_TARGET_NAME="task7_2_texturing">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -276,6 +281,10 @@
       <item itemvalue="CMake Application.task4-1_scene2pset_single_view" />
       <item itemvalue="CMake Application.task4-2_dmrecon_multi_views" />
       <item itemvalue="CMake Application.task4-2_scene2pset_multi_views" />
+      <item itemvalue="CMake Application.task6-1_surface_reconstruction" />
+      <item itemvalue="CMake Application.task6-2_meshclean" />
+      <item itemvalue="CMake Application.task7_1_mesh_clean" />
+      <item itemvalue="CMake Application.task7_2_texturing" />
       <item itemvalue="CMake Application.task5_dmrecon_single_view" />
       <item itemvalue="CMake Application.task2-2_test_p3p_ransac" />
       <item itemvalue="CMake Application.task2-3_test_lm_optimize" />
@@ -312,7 +321,13 @@
       <workItem from="1612196635847" duration="2731000" />
       <workItem from="1612320074713" duration="942000" />
       <workItem from="1612360488133" duration="17352000" />
-      <workItem from="1612416383521" duration="7154000" />
+      <workItem from="1612416383521" duration="9478000" />
+      <workItem from="1613491625655" duration="689000" />
+      <workItem from="1613740107088" duration="2938000" />
+      <workItem from="1614424643416" duration="1461000" />
+      <workItem from="1615040680766" duration="1258000" />
+      <workItem from="1615696171351" duration="1132000" />
+      <workItem from="1615818047721" duration="822000" />
     </task>
     <task id="LOCAL-00001" summary="Add all the basic library and the sample code for class1">
       <created>1610359674091</created>
@@ -412,7 +427,42 @@
       <option name="project" value="LOCAL" />
       <updated>1612142072860</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="add code for task4">
+      <created>1612453637814</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1612453637814</updated>
+    </task>
+    <task id="LOCAL-00016" summary="add code for task4">
+      <created>1613491664998</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1613491664998</updated>
+    </task>
+    <task id="LOCAL-00017" summary="add code for task6">
+      <created>1615040718538</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1615040718538</updated>
+    </task>
+    <task id="LOCAL-00018" summary="add code for task7">
+      <created>1615696321568</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1615696321568</updated>
+    </task>
+    <task id="LOCAL-00019" summary="change project name of task6">
+      <created>1615696384798</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1615696384798</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -442,7 +492,11 @@
     <MESSAGE value="delete task4" />
     <MESSAGE value="add examples for task3" />
     <MESSAGE value="some modifications on tasks" />
-    <option name="LAST_COMMIT_MESSAGE" value="some modifications on tasks" />
+    <MESSAGE value="add code for task4" />
+    <MESSAGE value="add code for task6" />
+    <MESSAGE value="add code for task7" />
+    <MESSAGE value="change project name of task6" />
+    <option name="LAST_COMMIT_MESSAGE" value="change project name of task6" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
