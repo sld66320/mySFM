@@ -25,16 +25,16 @@ Name=New Compiled Binary Launcher
 Type=Native Application
 
 [Launch][Launch Configuration 0][Data]
-Arguments=./examples/data/sequence ./examples/task3/
+Arguments=./examples/data/sequence_scene ./examples/data/sequence_scene/points_all.ply 2
 Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x00)
 Dependency Action=Nothing
 EnvironmentGroup=
-Executable=file:///home/sld/workspace/ImageBasedModellingEdu-main/build/examples/task3/task3-1_incremental_sfm
+Executable=file:///home/sld/workspace/ImageBasedModellingEdu-main
 External Terminal=konsole --noclose --workdir %workdir -e %exe
-Project Target=
+Project Target=ImageBasedModellingEdu-main,examples,task4,task4-2_scene2pset_multi_views
 Use External Terminal=false
 Working Directory=file:///home/sld/workspace/ImageBasedModellingEdu-main
-isExecutable=true
+isExecutable=false
 
 [Project]
 VersionControlSupport=kdevgit

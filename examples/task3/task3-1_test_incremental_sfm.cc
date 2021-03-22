@@ -164,7 +164,7 @@ int main(int argc, char *argv[])
     }
 
     core::Scene::Ptr scene = make_scene(argv[1], argv[2]);      //通过路径读取图片及内参，每一对图片和内参封装在一个view中
-    std::cout<<"Scene has "<<sciene->get_views().size()<<" views. "<<std::endl;
+    std::cout<<"Scene has "<<scene->get_views().size()<<" views. "<<std::endl;
 
 
     /*进行特征匹配*/
@@ -286,7 +286,7 @@ int main(int argc, char *argv[])
         for (std::size_t i = 0; i < next_views.size(); ++i)
         {
             std::cout << std::endl;
-            std::cout <·< "Adding next view ID " << next_views[i]
+            std::cout << "Adding next view ID " << next_views[i]
                       << " (" << (num_cameras_reconstructed + 1) << " of "
                       << viewports.size() << ")..." << std::endl;
             if (incremental.reconstruct_next_view(next_views[i]))	//估计出当前view的位置

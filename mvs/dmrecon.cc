@@ -330,7 +330,7 @@ DMRecon::processFeatures(){
             0.f, 0.f, neighViews, IndexSet());
         patch.doAutoOptimization();
         float conf = patch.computeConfidence();
-        if (conf <= 0.0f)
+        if (conf <= 0.0f) 
             continue;
 
         // 深度优化成功
@@ -452,7 +452,7 @@ DMRecon::processQueue()
             refV->normalImg->at(index, 0) = normal[0];
             refV->normalImg->at(index, 1) = normal[1];
             refV->normalImg->at(index, 2) = normal[2];
-            refV->dzImg->at(index, 0) = tmpData.dz_i;
+            refV->dzImg->at(index, 0) = tmpData.dz_i;	 
             refV->dzImg->at(index, 1) = tmpData.dz_j;
             refV->confImg->at(index) = tmpData.confidence;
 
