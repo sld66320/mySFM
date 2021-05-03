@@ -327,8 +327,8 @@ void PatchOptimization::optimizeDepthOnly(){
     }
 }
 
-void PatchOptimization:: (){
-
+void PatchOptimization::optimizeDepthAndNormal()
+{
     if (!localVS.success) {
         return;
     }

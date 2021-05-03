@@ -11,6 +11,7 @@
 #include <list>
 #include <iostream>
 #include <algorithm>
+#include <queue>
 
 #include "util/timer.h"
 #include "core/mesh_io.h"
@@ -68,7 +69,21 @@ Octree::Node*
 Octree::Iterator::next_bread_first(void)
 {
     /*todo implement bread first search here*/
-
+	std::queue<Node*> que;
+	que.push(root);
+	while(que.empty())
+	{
+		this->current = que.front();
+		que.pop();
+		if(this->current->children != nullptr)
+		{
+			for(int i = 0; i < 7; i++)
+			{
+				que.push(this->current->children + i);
+			}
+		}
+	}
+	
 }
 
 Octree::Node*

@@ -65,10 +65,11 @@ main (int argc, char** argv)
     std::stringstream stream(argv[3]);
     stream>>conf.scale;
 
-    conf.dmname = std::string("depth-L") + argv[3];
-    conf.imagename = (conf.scale == 0)
-                ? "undistorted"
-                : std::string("undist-L") + argv[3];
+    conf.dmname = std::string("depth-L") + argv[3] + ".mvei";
+	//conf.dmname = std::string("depth-L") + argv[3];
+	conf.imagename = (conf.scale == 0)
+                ? "undistorted.png"
+                : std::string("undist-L") + argv[3] + ".png";
 
     std::cout << "Using depthmap \"" << conf.dmname
         << "\" and color image \"" << conf.imagename << "\"" << std::endl;

@@ -69,7 +69,9 @@ main (int argc, char** argv)
     conf.mvs.writePlyFile = conf.write_ply;
     conf.mvs.plyPath = util::fs::join_path(conf.scene_path, conf.ply_dest);
 
+	
      core::Scene::ViewList& views(scene->get_views());
+	 std::cout << "views.size() = " << views.size() << std::endl;
      if (conf.view_ids.empty())
      {
         std::cout << "Reconstructing all views..." << std::endl;
@@ -93,21 +95,32 @@ main (int argc, char** argv)
             }
 
             if (views[id] == nullptr || !views[id]->is_camera_valid())
-                continue;
+			{
+				std::cout << "view is valid" << std::endl;
+				continue;
+			}
+
 
             /* Setup MVS. */
             mvs::Settings settings(conf.mvs);
             settings.refViewNr = id;
 
-            std::string embedding_name = "depth-L" + util::string::get(settings.scale);
+            std::string embedding_name = "depth-L" + util::string::get(settings.scale) + ".mvei";
+			std::cout << "embedding_name = " << embedding_name << std::endl;
             if (!conf.force_recon && views[id]->has_image(embedding_name))
-                continue;
+			{
+				std::cout << "error" << std::endl;
+				continue;
+			}
+			
+                
 
             try {
                 // 重建场景
                 mvs::DMRecon recon(scene, settings);
                 recon.start();
                 views[id]->save_view();
+				std::cout << "success" << std::endl;
             }
             catch (std::exception &err)
             {

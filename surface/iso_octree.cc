@@ -210,7 +210,7 @@ IsoOctree::sample_ifn (math::Vec3d const& voxel_pos)
 
     /* Compute final voxel data. */
     VoxelData voxel;
-    voxel.value = total_ifn / total_weight; // sdf value
+    voxel.value = total_ifn / total_weight + 100; // sdf value
     voxel.conf = total_weight; // total weight
     voxel.scale = total_scale / total_color_weight;
     voxel.color = total_color / total_color_weight;

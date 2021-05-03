@@ -672,8 +672,8 @@ View::populate_images_and_blobs (std::string const& path)
         if (ext4 == ".png" || ext4 == ".jpg" ||
             ext5 == ".jpeg" || ext5 == ".mvei")
         {
-            //std::cout << "View: Adding image proxy: "
-            //    << file.name << std::endl;
+            std::cout << "View: Adding image proxy: "
+                << file.name << std::endl;
 
             ImageProxy proxy;
             proxy.is_dirty = false;
@@ -683,8 +683,8 @@ View::populate_images_and_blobs (std::string const& path)
         }
         else if (ext5 == ".blob")
         {
-            //std::cout << "View: Adding BLOB proxy: "
-            //    << file.name << std::endl;
+            std::cout << "View: Adding BLOB proxy: "
+                << file.name << std::endl;
 
             BlobProxy proxy;
             proxy.is_dirty = false;

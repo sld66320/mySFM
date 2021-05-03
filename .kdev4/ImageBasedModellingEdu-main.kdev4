@@ -25,13 +25,13 @@ Name=New Compiled Binary Launcher
 Type=Native Application
 
 [Launch][Launch Configuration 0][Data]
-Arguments=./examples/data/sequence_scene ./examples/data/sequence_scene/points_all.ply 2
+Arguments=dmrecon.ply surface.ply
 Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x00)
 Dependency Action=Nothing
 EnvironmentGroup=
 Executable=file:///home/sld/workspace/ImageBasedModellingEdu-main
 External Terminal=konsole --noclose --workdir %workdir -e %exe
-Project Target=ImageBasedModellingEdu-main,examples,task4,task4-2_scene2pset_multi_views
+Project Target=ImageBasedModellingEdu-main,examples,task6,task6-1_surface_reconstruction
 Use External Terminal=false
 Working Directory=file:///home/sld/workspace/ImageBasedModellingEdu-main
 isExecutable=false
